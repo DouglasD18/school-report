@@ -9,7 +9,7 @@ const VALIDATED: Validated = {
 
 const NOTE_BODY: NoteBody = {
   bimestre: Bimestre.TERCEIRO,
-  disciplina: Disciplina.SOCIOLOGIA,
+  disciplina: Disciplina.Sociologia,
   nota: 8
 }
 
