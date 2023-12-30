@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "module": "CommonJS",
+    "outDir": "dist",
+    "module": "commonjs",
     "target": "es2019",
     "esModuleInterop": true,
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "strict": true,
-    "sourceMap": true
-  }
+    "sourceMap": true,
+    "rootDirs": ["src", "tests"]
+  },
+  "include": ["src", "tests"],
+  "exclude": []
 }
