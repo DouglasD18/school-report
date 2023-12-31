@@ -1,3 +1,5 @@
+import { Painel } from '@/components/Painel'
+import { Provider } from '@/context/Provider'
 import Head from 'next/head'
 
 export default function Home() {
@@ -10,7 +12,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        Hello, World!
+        <Provider>
+          <Painel />
+        </Provider>
       </main>
     </>
   )
