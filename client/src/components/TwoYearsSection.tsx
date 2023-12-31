@@ -36,15 +36,17 @@ export function TwoYearsSection({ bimestre }: TwoYearsSectionProps) {
   return (
     <div className="section">
       { title() }
-      { notesToRender && notesToRender.map(note => (
-        <NoteCard
-          nota={ note.nota }
-          disciplina={ note.disciplina }
-          data={ note.atualizadoEm }
-          id={ note.id }
-          key={ note.id }
-        />
-      )) }
+      <div className="section-cards">
+        { notesToRender && notesToRender.map(note => (
+          <NoteCard
+            nota={ note.nota }
+            disciplina={ note.disciplina }
+            data={ note.atualizadoEm }
+            id={ note.id }
+            key={ note.id }
+          />
+        )) }
+      </div>
     </div>
   )
 }

@@ -34,8 +34,8 @@ export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
   }, [nota]);
 
   return (
-    <div className="note-card">
-      <Image src={ Delete } alt={"Imagem de uma lixeira"} onClick={ () => deleteNote() } />
+    <div className={ "note-card " + disciplina.toLowerCase() }>
+      <Image src={ Delete } alt={"Imagem de uma lixeira"} onClick={ async () => await deleteNote() } />
       <div>
         <p>{ disciplina }</p>
         <p>{ data.toString() }</p>
