@@ -1,4 +1,5 @@
 import { Bimestre, Disciplina, NoteBody } from "../../domain/models";
+import { MongoHelper } from "../../infra/db/mongodb/helpers/mongo-helper";
 import env from "../../main/config/env";
 
 const { url } = env;
@@ -47,6 +48,9 @@ const notes: NoteBody[] = [
 ]
 
 export default async () => {
+  const notesColletion = await MongoHelper.getCollection("notes");
+  await notesColletion.deleteMany({});
+
   notes.forEach(async note => {
     await fetch(url, {
       method: "post",
