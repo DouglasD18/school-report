@@ -27,8 +27,10 @@ export function TwoYearsSection({ bimestre }: TwoYearsSectionProps) {
   }
 
   useEffect(() => {
-    const toRender = notes.filter(note => note.bimestre === bimestre);
-    setNotesToRender(toRender);
+    if (notes) {
+      const toRender = notes.filter(note => note.bimestre === bimestre);
+      setNotesToRender(toRender);
+    }
   }, [notes, bimestre])
 
   return (

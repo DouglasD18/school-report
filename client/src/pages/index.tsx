@@ -1,3 +1,4 @@
+import { Painel } from '@/components/Painel'
 import { Provider } from '@/context/Provider'
 import Head from 'next/head'
 
@@ -12,7 +13,7 @@ export default function Home() {
       </Head>
       <main>
         <Provider>
-          Hello, World!
+          <Painel />
         </Provider>
       </main>
     </>
