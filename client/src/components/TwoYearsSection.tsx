@@ -5,11 +5,7 @@ import MyContext from "@/context/MyContext";
 import { Bimestre, Note } from "@/types";
 import { NoteCard } from "./NoteCard";
 import Add from "@/../public/images/add.svg";
-import { AddBimestreNoteForm } from "./AddBimestreNoteForm";
-
-type TwoYearsSectionProps = {
-  bimestre: string
-}
+import { AddBimestreNoteForm, FormTypes } from "./AddBimestreNoteForm";
 
 export const title = (bimestre: string) => {
   let value;
@@ -26,10 +22,14 @@ export const title = (bimestre: string) => {
   return <h1>{ value }</h1>
 }
 
-export function TwoYearsSection({ bimestre }: TwoYearsSectionProps) {
-  const { notes } = useContext(MyContext)!;
+export function TwoYearsSection({ bimestre, position }: FormTypes) {
+  const { notes, addBimestreNote, setAddBimestreNote } = useContext(MyContext)!;
   const [notesToRender, setNotesToRender] = useState<Note[] | undefined>(undefined);
-  const [showForm, setShowForm] = useState<boolean>(false);
+
+  const onClick = () => {
+    addBimestreNote[position] = true;
+    setAddBimestreNote(addBimestreNote);
+  }
 
   useEffect(() => {
     if (notes) {
@@ -42,11 +42,11 @@ export function TwoYearsSection({ bimestre }: TwoYearsSectionProps) {
     <div className="section">
       <div>
         { title(bimestre) }
-        <button>
+        <button onClick={ () => onClick() }>
+          {"Lançar nota "}
           <Image
             src={ Add }
             alt={"Imagem de uma sinal de mais"}
-            onClick={ () => setShowForm(true) }
           />
         </button>
       </div>
@@ -55,14 +55,14 @@ export function TwoYearsSection({ bimestre }: TwoYearsSectionProps) {
           <NoteCard
             nota={ note.nota }
             disciplina={ note.disciplina }
-            data={ note.atualizadoEm }
+            data={ note.criadoEm }
             id={ note.id }
             key={ note.id }
           />
         )) }
       </div>
 
-      <AddBimestreNoteForm showForm={ showForm } bimestre={ bimestre } />
+      <AddBimestreNoteForm position={ position } bimestre={ bimestre } />
     </div>
   )
 }
