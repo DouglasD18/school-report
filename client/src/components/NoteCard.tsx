@@ -17,6 +17,15 @@ export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
   const { notes, setNotes } = useContext(MyContext)!;
   const [color, setColor] = useState<string>("green");
 
+  const textData = () => {
+    const total = data.toString();
+    const ano = total.substring(0, 4);
+    const mes = total.substring(5, 7);
+    const dia = total.substring(8, 10);
+
+    return `${dia}/${mes}/${ano}`;
+  }
+
   const api = new Api();
 
   const deleteNote = async () => {
@@ -38,7 +47,7 @@ export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
       <Image src={ Delete } alt={"Imagem de uma lixeira"} onClick={ async () => await deleteNote() } />
       <div>
         <p>{ disciplina }</p>
-        <p>{ data.toString() }</p>
+        <p>{ textData() }</p>
       </div>
       <div className={ color + " nota-bar" }>
         <p>
