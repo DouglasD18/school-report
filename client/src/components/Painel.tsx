@@ -15,14 +15,14 @@ export function Painel() {
 
   useEffect(() => {
     get();
-  })
+  });
 
   return (
     <div className="painel">
-      <TwoYearsSection bimestre={"PRIMEIRO"} />
-      <TwoYearsSection bimestre={"SEGUNDO"} />
-      <TwoYearsSection bimestre={"TERCEIRO"} />
-      <TwoYearsSection bimestre={"QUARTO"} />
+      <TwoYearsSection bimestre={"PRIMEIRO"} position={0} />
+      <TwoYearsSection bimestre={"SEGUNDO"} position={1} />
+      <TwoYearsSection bimestre={"TERCEIRO"} position={2} />
+      <TwoYearsSection bimestre={"QUARTO"} position={3} />
     </div>
   )
 }

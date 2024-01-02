@@ -1,4 +1,40 @@
+.painel {
+  margin-left: 15vw;
+  margin-top: 6vh;
+}
+
 .section {
+  width: 70vw;
+
+  & .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3vh;
+    
+    & h1 {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    & button {
+      display: flex;
+      align-items: center;
+      background-color: $addNote;
+      color: $backgroundColor;
+
+      & p {
+        background-color: $addNote;
+        color: $backgroundColor;
+        margin-right: 5px;
+      }
+
+      & img {
+        background-color: $addNote;
+      }
+    }
+  }
+
   & .section-cards {
     display: flex;
   }

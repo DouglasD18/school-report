@@ -34,19 +34,25 @@ export function TwoYearsSection({ bimestre, position }: FormTypes) {
   useEffect(() => {
     if (notes) {
       const toRender = notes.filter(note => note.bimestre === bimestre);
-      setNotesToRender(toRender);
+      setNotesToRender(toRender.sort((curr, acc) => {
+        if (curr.disciplina > acc.disciplina) {
+          return 1
+        }
+        return -1;
+      }));
     }
   }, [notes, bimestre])
 
   return (
     <div className="section">
-      <div>
+      <div className="title">
         { title(bimestre) }
         <button onClick={ () => onClick() }>
-          {"Lançar nota "}
+          <p>Lançar nota </p>
           <Image
             src={ Add }
             alt={"Imagem de uma sinal de mais"}
+            width="16"
           />
         </button>
       </div>
