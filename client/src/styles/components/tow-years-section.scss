@@ -5,6 +5,7 @@
 
 .section {
   width: 70vw;
+  margin-bottom: 3vh;
 
   & .title {
     display: flex;
@@ -37,5 +38,6 @@
 
   & .section-cards {
     display: flex;
+    justify-content: space-between;
   }
 }

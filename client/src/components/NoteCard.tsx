@@ -44,7 +44,7 @@ export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
 
   return (
     <div className={ "note-card " + disciplina.toLowerCase() }>
-      <Image src={ Delete } alt={"Imagem de uma lixeira"} onClick={ async () => await deleteNote() } />
+      <Image className="delete" src={ Delete } alt={"Imagem de uma lixeira"} onClick={ async () => await deleteNote() } />
       <div>
         <p>{ disciplina }</p>
         <p>{ textData() }</p>
