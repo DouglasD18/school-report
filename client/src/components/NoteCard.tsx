@@ -35,9 +35,9 @@ export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
   }
 
   useEffect(() => {
-    if (nota < 8 && nota > 5) {
+    if (nota < 8 && nota >= 6) {
       setColor("yellow");
-    } else if (nota <= 5) {
+    } else if (nota < 6) {
       setColor("red");
     }
   }, [nota]);

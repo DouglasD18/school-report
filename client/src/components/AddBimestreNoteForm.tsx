@@ -72,31 +72,35 @@ export function AddBimestreNoteForm({ bimestre, position }: FormTypes) {
             }}>X</p>
           </div>
           <form>
-            <h2>Disciplina</h2>
-            <div className="disciplinas">
-              <button
-                type="button"
-                className="biologia"
-                onClick={ () => onClickDisciplina(Disciplina.Biologia) }
-              >Biologia</button>
-              <button
-                type="button"
-                className="artes"
-                onClick={ () => onClickDisciplina(Disciplina.Artes) }
-              >Artes</button>
-              <button
-                type="button"
-                className="geografia"
-                onClick={ () => onClickDisciplina(Disciplina.Geografia) }
-              >Geografia</button>
-              <button
-                type="button"
-                className="sociologia"
-                onClick={ () => onClickDisciplina(Disciplina.Geografia) }
-              >Sociologia</button>
+            <div>
+              <h2>Disciplina</h2>
+              <div className="disciplinas">
+                <button
+                  type="button"
+                  className="biologia"
+                  onClick={ () => onClickDisciplina(Disciplina.Biologia) }
+                >Biologia</button>
+                <button
+                  type="button"
+                  className="artes"
+                  onClick={ () => onClickDisciplina(Disciplina.Artes) }
+                >Artes</button>
+                <button
+                  type="button"
+                  className="geografia"
+                  onClick={ () => onClickDisciplina(Disciplina.Geografia) }
+                >Geografia</button>
+                <button
+                  type="button"
+                  className="sociologia"
+                  onClick={ () => onClickDisciplina(Disciplina.Sociologia) }
+                >Sociologia</button>
+              </div>
             </div>
-            <h3>Nota</h3>
-            <input type="number" max={10} min={0} required={true} onChange={onChangeNota} value={ nota } />
+            <div>
+              <h3>Nota</h3>
+              <input type="number" max={10} min={0} required={true} onChange={onChangeNota} value={ nota } step=".1" />
+            </div>
             <div
               onClick={() => confirme()}
               className="confirme"
