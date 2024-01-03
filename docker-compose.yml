@@ -22,3 +22,14 @@ services:
       - mongo
     environment:
       - MONGO_URI=mongodb://127.0.0.1:27017/notes
+
+  client:
+    container_name: client-container
+    build: ./client
+    image: api-client
+    network_mode: host
+    ports:
+      - 3000:3000
+    working_dir: /client
+    depends_on:
+      - server
