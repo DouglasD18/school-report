@@ -29,6 +29,7 @@ export function AddBimestreNoteForm({ bimestre, position }: FormTypes) {
 
     try {
       const note = await api.add(body);
+      
       dispatch(add(note!));
       dispatch(change({ position, state: false }));
     } catch (error) {
@@ -75,19 +76,21 @@ export function AddBimestreNoteForm({ bimestre, position }: FormTypes) {
                 type="button"
                 className="geografia"
                 value={Disciplina.Geografia}
+                onClick={ () => onChangeDisciplina }
               >Geografia</button>
               <button
                 type="button"
                 className="sociologia"
                 value={Disciplina.Sociologia}
+                onClick={ () => onChangeDisciplina }
               >Sociologia</button>
             </div>
             <h3>Nota</h3>
             <input type="number" max={10} min={0} required={true} onChange={onChangeNota} value={ nota } />
-            <button
+            <div
               onClick={() => confirme()}
               className="confirme"
-            >Confirmar</button>
+            >Confirmar</div>
           </form>
         </div>
       </div>
