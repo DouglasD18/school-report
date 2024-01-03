@@ -1,4 +1,4 @@
-# Linklab Challenge
+# School Report
 
 ![Aplicação rodando](running.png)
 
