@@ -1,20 +1,23 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { title } from "./TwoYearsSection";
 import { Bimestre, Disciplina } from "@/types";
 import { Api } from "@/services/api";
-import MyContext from "@/context/MyContext";
+import { RootState } from "@/redux/store";
+import { add } from "@/redux/Notes/Notes.Store";
+import { change } from "@/redux/AddBimestre/AddBimestre.Store";
 
 export interface FormTypes {
-  showForm: boolean;
   bimestre: string;
+  position: number;
 }
 
-export function AddBimestreNoteForm({ showForm, bimestre }: FormTypes) {
-  const [show, setShow] = useState<string>("");
+export function AddBimestreNoteForm({ bimestre, position }: FormTypes) {
   const [disciplina, setDisciplina] = useState<Disciplina>(Disciplina.Biologia);
   const [nota, setNota] = useState<number>(0);
-  const { notes, setNotes } = useContext(MyContext)!;
+  const dispatch = useDispatch();
+  const addBimestreNote = useSelector((state: RootState) => state.addBimestre);
 
   const confirme = async () => {
     const api = new Api();
@@ -26,15 +29,14 @@ export function AddBimestreNoteForm({ showForm, bimestre }: FormTypes) {
 
     try {
       const note = await api.add(body);
-      notes.push(note!);
-      setNotes(notes);
-      setShow("");
+      dispatch(add(note!));
+      dispatch(change({ position, state: false }));
     } catch (error) {
       console.assert(error);
     }
   }
 
-  const onChangeDisciplina = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChangeDisciplina = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setDisciplina(e.target.value as Disciplina);
   }
@@ -44,30 +46,54 @@ export function AddBimestreNoteForm({ showForm, bimestre }: FormTypes) {
     setNota(Number(e.target.value));
   }
 
-  useEffect(() => {
-    if (showForm) {
-      setShow("show");
-    }
-  }, [showForm]);
-
-  return (
-    <div className={ show + " form"}>
-      <div>
-        { title(bimestre) }
-        <p onClick={() => setShow("")}>X</p>
+  if (addBimestreNote[position]) {
+    return (
+      <div className="form">
+        <div className="form-content">
+          <div className="header">
+            { title(bimestre) }
+            <p onClick={() => {
+              dispatch(change({ position, state: false }));
+            }}>X</p>
+          </div>
+          <form>
+            <h2>Discipline</h2>
+            <div className="disciplinas">
+              <button
+                type="button"
+                className="biologia"
+                value={Disciplina.Biologia}
+                onClick={ () => onChangeDisciplina }
+              >Biologia</button>
+              <button
+                type="button"
+                className="artes"
+                value={Disciplina.Artes}
+                onClick={ () => onChangeDisciplina }
+              >Artes</button>
+              <button
+                type="button"
+                className="geografia"
+                value={Disciplina.Geografia}
+              >Geografia</button>
+              <button
+                type="button"
+                className="sociologia"
+                value={Disciplina.Sociologia}
+              >Sociologia</button>
+            </div>
+            <h3>Nota</h3>
+            <input type="number" max={10} min={0} required={true} onChange={onChangeNota} value={ nota } />
+            <button
+              onClick={() => confirme()}
+              className="confirme"
+            >Confirmar</button>
+          </form>
+        </div>
       </div>
-      <form>
-        <h2>Discipline</h2>
-        <select required={true} value={ disciplina } onChange={onChangeDisciplina}>
-          <option selected className="biologia" value={Disciplina.Biologia}>Biologia</option>
-          <option className="artes" value={Disciplina.Artes}>Artes</option>
-          <option className="geografia" value={Disciplina.Geografia}>Geografia</option>
-          <option className="sociologia" value={Disciplina.Sociologia}>Sociologia</option>
-        </select>
-        <h3>Nota</h3>
-        <input type="number" max={10} min={0} required={true} onChange={onChangeNota} />
-        <button onClick={() => confirme()} className="confirme">Confirmar</button>
-      </form>
-    </div>
-  );
+    );
+  } else {
+    return <></>
+  }
+
 }

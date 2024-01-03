@@ -1,6 +1,7 @@
-import { Painel } from '@/components/Painel'
-import { Provider } from '@/context/Provider'
-import Head from 'next/head'
+import { Painel } from '@/components/Painel';
+import { store } from '@/redux/store';
+import Head from 'next/head';
+import { Provider } from 'react-redux';
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Provider>
+        <Provider store={ store }>
           <Painel />
         </Provider>
       </main>

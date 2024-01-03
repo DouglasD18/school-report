@@ -1,16 +1,17 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-import MyContext from "@/context/MyContext";
 import { Api } from "@/services/api";
 import { TwoYearsSection } from "./TwoYearsSection";
+import { init } from "@/redux/Notes/Notes.Store";
 
 export function Painel() {
-  const { setNotes } = useContext(MyContext)!;
+  const dispatch = useDispatch();
 
   const get = async () => {
     const api = new Api();
     const result = await api.list();
-    setNotes(result!);
+    dispatch(init(result!))
   }
 
   useEffect(() => {

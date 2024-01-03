@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 
-import MyContext from "@/context/MyContext";
 import { Bimestre, Note } from "@/types";
 import { NoteCard } from "./NoteCard";
 import Add from "@/../public/images/add.svg";
 import { AddBimestreNoteForm, FormTypes } from "./AddBimestreNoteForm";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { change } from "@/redux/AddBimestre/AddBimestre.Store";
 
 export const title = (bimestre: string) => {
   let value;
@@ -23,12 +25,12 @@ export const title = (bimestre: string) => {
 }
 
 export function TwoYearsSection({ bimestre, position }: FormTypes) {
-  const { notes, addBimestreNote, setAddBimestreNote } = useContext(MyContext)!;
+  const dispatch = useDispatch();
+  const notes = useSelector((state: RootState) => state.notes);
   const [notesToRender, setNotesToRender] = useState<Note[] | undefined>(undefined);
 
   const onClick = () => {
-    addBimestreNote[position] = true;
-    setAddBimestreNote(addBimestreNote);
+    dispatch(change({ position, state: true }));
   }
 
   useEffect(() => {
