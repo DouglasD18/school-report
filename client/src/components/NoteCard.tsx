@@ -35,7 +35,7 @@ export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
   }
 
   useEffect(() => {
-    if (nota < 8 && nota >= 6) {
+    if (nota < 8 && nota > 5) {
       setColor("yellow");
     } else if (nota <= 5) {
       setColor("red");
@@ -43,17 +43,19 @@ export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
   }, [nota]);
 
   return (
-    <div className={ "note-card " + disciplina.toLowerCase() }>
-      <Image className="delete" src={ Delete } alt={"Imagem de uma lixeira"} onClick={ async () => await deleteNote() } />
-      <div>
-        <p>{ disciplina }</p>
-        <p>{ textData() }</p>
-      </div>
-      <div className={ color + " nota-bar" }>
-        <p>
-          <Image src={ Graphic } alt={"Imagem de um gráfico"} />
-          Nota: { nota }
-        </p>
+    <div className="auxiliar">
+      <div className={ "note-card " + disciplina.toLowerCase() }>
+        <Image className="delete" src={ Delete } alt={"Imagem de uma lixeira"} onClick={ async () => await deleteNote() } />
+        <div className="disciplina">
+          <p>{ disciplina }</p>
+          <p>{ textData() }</p>
+        </div>
+        <div className={ color + " nota-bar" }>
+            <Image src={ Graphic } alt={"Imagem de um gráfico"} />
+          <p>
+            Nota: { nota }
+          </p>
+        </div>
       </div>
     </div>
   )
