@@ -72,7 +72,7 @@ export function AddBimestreNoteForm({ bimestre, position }: FormTypes) {
             }}>X</p>
           </div>
           <form>
-            <h2>Discipline</h2>
+            <h2>Disciplina</h2>
             <div className="disciplinas">
               <button
                 type="button"

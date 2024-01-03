@@ -1,11 +1,16 @@
 .painel {
-  margin-left: 15vw;
   margin-top: 6vh;
 }
 
 .section {
   width: 70vw;
+  margin: 0 15vw;
   margin-bottom: 3vh;
+  
+  @media (max-width: 1080px) {
+    width: 85vw;
+    margin: 0 7.5vw;
+  }
 
   & .title {
     display: flex;
@@ -37,7 +42,13 @@
   }
 
   & .section-cards {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
   }
 }
