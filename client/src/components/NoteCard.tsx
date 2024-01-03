@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Delete from "@/../public/images/delete.svg";
 import Graphic from "@/../public/images/graphic.svg";
 import { Api } from "@/services/api";
-import MyContext from "@/context/MyContext";
+import { remove } from "@/redux/Notes/Notes.Store";
 
 type NoteCardProps = {
   nota: number;
@@ -14,15 +15,23 @@ type NoteCardProps = {
 }
 
 export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
-  const { notes, setNotes } = useContext(MyContext)!;
+  const dispatch = useDispatch();
   const [color, setColor] = useState<string>("green");
+
+  const textData = () => {
+    const total = data.toString();
+    const ano = total.substring(0, 4);
+    const mes = total.substring(5, 7);
+    const dia = total.substring(8, 10);
+
+    return `${dia}/${mes}/${ano}`;
+  }
 
   const api = new Api();
 
   const deleteNote = async () => {
     await api.delete({ id });
-    const newNotes = notes.filter(note => note.id !== id);
-    setNotes(newNotes);
+    dispatch(remove(id));
   }
 
   useEffect(() => {
@@ -35,10 +44,10 @@ export function NoteCard({ nota, disciplina, data, id }: NoteCardProps) {
 
   return (
     <div className={ "note-card " + disciplina.toLowerCase() }>
-      <Image src={ Delete } alt={"Imagem de uma lixeira"} onClick={ async () => await deleteNote() } />
+      <Image className="delete" src={ Delete } alt={"Imagem de uma lixeira"} onClick={ async () => await deleteNote() } />
       <div>
         <p>{ disciplina }</p>
-        <p>{ data.toString() }</p>
+        <p>{ textData() }</p>
       </div>
       <div className={ color + " nota-bar" }>
         <p>

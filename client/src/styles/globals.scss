@@ -1,6 +1,7 @@
 @import "./variables.scss";
 @import "./components/note-card.scss";
 @import "./components/tow-years-section.scss";
+@import "./components/form.scss";
 
 * {
   box-sizing: border-box;
@@ -8,8 +9,15 @@
   margin: 0;
   max-width: 100vw;
   overflow-x: hidden;
-  overflow-y: hidden;
   font-family: 'Montserrat';
   background-color: $backgroundColor;
   color: $principalFontColor;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  padding: 0.5rem 1rem;
 }

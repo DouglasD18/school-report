@@ -1,5 +1,85 @@
 .note-card {
-  & .artes {
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 145px;
+  height: 146px;
+  padding-left: 1.5vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  & .delete {
+    position: relative;
+    z-index: 100;
+  }
+
+  & .nota-bar {
+    z-index: 5;
+    width: 100%;
+    background-color: $backgroundColor;
+    color: $greenNote;
+
+    & img {
+      margin-right: 2px;
+    }
+  }
+
+  & .nota-bar.yellow {
+    color: $yellowNote;
+  }
+
+  & .nota-bar.red {
+    color: $redNote;
+  }
+
+
+}
+
+.note-card.artes {
+  background-color: $artesColor;
+
+  & img {
     background-color: $artesColor;
+  } 
+
+  & p {
+    background-color: $artesColor;
+  }
+}
+
+.note-card.geografia {
+  background-color: $geografiaColor;
+
+  & img {
+    background-color: $geografiaColor;
+  } 
+
+  & p {
+    background-color: $geografiaColor;
+  }
+}
+
+.note-card.sociologia {
+  background-color: $sociologiaColor;
+
+  & img {
+    background-color: $sociologiaColor;
+  } 
+
+  & p {
+    background-color: $sociologiaColor;
+  }
+}
+
+.note-card.biologia {
+  background-color: $biologiaColor;
+
+  & img {
+    background-color: $biologiaColor;
+  } 
+
+  & p {
+    background-color: $biologiaColor;
   }
 }
