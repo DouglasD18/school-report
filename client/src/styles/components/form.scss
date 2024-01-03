@@ -1,0 +1,138 @@
+.form {
+  display: block;
+  position: fixed;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: $desfokedColor;
+  color: $principalFontColor;
+
+  & .form-content {
+    position: fixed;
+    height: 50vh;
+    width: 40vw;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    background-color: $backgroundColor;
+    transform: translate(-50%, -50%);
+    padding: 2vh 2vw 2vh 3vw;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      width: 90vw;
+      padding: 2vh 4vw 2vh 8vw;
+    }
+
+    & h1 {
+      font-weight: 500;
+      font-size: 32px;
+    }
+
+    & h2 {
+      font-weight: 500;
+      font-size: 18px;
+      margin-bottom: 4vh;
+    }
+
+    & h3 {
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    & .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      font-size: 32px;
+      margin-bottom: 3vh;
+
+      & p {
+        cursor: pointer;
+      }
+    }
+
+    & .disciplinas {
+      margin-bottom: 2vh;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      & button {
+        text-align: center;
+        color: $principalFontColor;
+      }
+    }
+
+    & .geografia {
+      background-color: $notSelectedGeografiaColor;
+    }
+
+    & .artes {
+      background-color: $notSelectedArtesColor;
+    }
+
+    & .sociologia {
+      background-color: $notSelectedSociologiaColor;
+    }
+
+    & .biologia {
+      background-color: $notSelectedBiologiaColor;
+    }
+
+    & .geografia:focus, .geografia:active {
+      background-color: $geografiaColor;
+    }
+
+    & .artes:focus, .artes:active {
+      background-color: $artesColor;
+    }
+
+    & .sociologia:focus, .sociologia:active {
+      background-color: $sociologiaColor;
+    }
+
+    & .biologia:focus, .biologia:active{
+      background-color: $biologiaColor;
+    }
+
+    & input {
+      color: rgba(109, 109, 109, 1);
+      background-color: $desfokedColor;
+      text-align: center;
+      display: 1px solid rgba(66, 66, 66);
+      padding: 1vh 2vw;
+      border-radius: 8px;
+      margin-top: 1vh;
+    }
+
+    & .confirme {
+      background-color: $addNote;
+      color: $backgroundColor;
+      width: 30%;
+      height: 15%;
+      margin-top: 3vh;
+      float: right;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      padding: 0.5rem 1rem;
+
+      @media (max-width: 768px) {
+        margin-top: 6vh;
+        width: 40%;
+      }
+    }
+  }
+}

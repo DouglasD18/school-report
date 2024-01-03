@@ -1,49 +1,74 @@
+.auxiliar {
+  position: relative;
+}
+
 .note-card {
   box-sizing: border-box;
   border-radius: 8px;
-  width: 145px;
+  width: 80%;
   height: 146px;
-  padding-left: 1.5vw;
-
+  margin-bottom: 3vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 
   & .delete {
-    position: relative;
-    z-index: 100;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 5%;
+    background-color: $backgroundColor;
+    color: $redNote;
+  }
+
+  & .disciplina {
+    color: $principalFontColor;
+    margin-left: 1.5vw;
   }
 
   & .nota-bar {
-    z-index: 5;
+    display: flex;
+    align-items: center;
     width: 100%;
-    background-color: $backgroundColor;
+    height: 20%;
+    font-weight: 400;
+    font-size: 12px;
+    padding-left: 1.5vw;
+    z-index: 1;
+    background-color: $desfokedColor;
     color: $greenNote;
 
     & img {
-      margin-right: 2px;
+      margin-right: 0.4vw;
+      color: $greenNote;
+      background-color: $desfokedColor;
     }
   }
 
   & .nota-bar.yellow {
     color: $yellowNote;
+
+    & img {
+      color: $yellowNote;
+    }
   }
 
   & .nota-bar.red {
     color: $redNote;
+
+    & img {
+      color: $redNote;
+    }
   }
 
-
+  
 }
 
 .note-card.artes {
   background-color: $artesColor;
 
-  & img {
-    background-color: $artesColor;
-  } 
-
-  & p {
+  & .disciplina {
     background-color: $artesColor;
   }
 }
@@ -51,11 +76,7 @@
 .note-card.geografia {
   background-color: $geografiaColor;
 
-  & img {
-    background-color: $geografiaColor;
-  } 
-
-  & p {
+  & .disciplina {
     background-color: $geografiaColor;
   }
 }
@@ -63,11 +84,7 @@
 .note-card.sociologia {
   background-color: $sociologiaColor;
 
-  & img {
-    background-color: $sociologiaColor;
-  } 
-
-  & p {
+  & .disciplina {
     background-color: $sociologiaColor;
   }
 }
@@ -75,11 +92,7 @@
 .note-card.biologia {
   background-color: $biologiaColor;
 
-  & img {
-    background-color: $biologiaColor;
-  } 
-
-  & p {
+  & .disciplina {
     background-color: $biologiaColor;
   }
 }

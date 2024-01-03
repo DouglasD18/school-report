@@ -18,28 +18,42 @@ export function AddBimestreNoteForm({ bimestre, position }: FormTypes) {
   const [nota, setNota] = useState<number>(0);
   const dispatch = useDispatch();
   const addBimestreNote = useSelector((state: RootState) => state.addBimestre);
+  const notes = useSelector((state: RootState) => state.notes);
 
   const confirme = async () => {
-    const api = new Api();
-    const body = {
-      bimestre: bimestre as Bimestre,
-      disciplina,
-      nota
-    }
+    const exists = notes.find(note => {
+      if (note.bimestre === bimestre && note.disciplina === disciplina) {
+        return true
+      } 
 
-    try {
-      const note = await api.add(body);
-      
-      dispatch(add(note!));
-      dispatch(change({ position, state: false }));
-    } catch (error) {
-      console.assert(error);
+      return false;
+    })
+
+    if (!exists) {
+      const api = new Api();
+      const body = {
+        bimestre: bimestre as Bimestre,
+        disciplina,
+        nota
+      }
+
+      try {
+        const note = await api.add(body);
+        
+        setNota(0);
+        setDisciplina(Disciplina.Biologia);
+        dispatch(add(note!));
+        dispatch(change({ position, state: false }));
+      } catch (error) {
+        console.assert(error);
+      }
+    } else {
+      window.alert("Já existe nota para essa disciplina nesse bismestre!");
     }
   }
 
-  const onChangeDisciplina = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    setDisciplina(e.target.value as Disciplina);
+  const onClickDisciplina = (value: string) => {
+    setDisciplina(value as Disciplina);
   }
 
   const onChangeNota = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,35 +72,35 @@ export function AddBimestreNoteForm({ bimestre, position }: FormTypes) {
             }}>X</p>
           </div>
           <form>
-            <h2>Discipline</h2>
-            <div className="disciplinas">
-              <button
-                type="button"
-                className="biologia"
-                value={Disciplina.Biologia}
-                onClick={ () => onChangeDisciplina }
-              >Biologia</button>
-              <button
-                type="button"
-                className="artes"
-                value={Disciplina.Artes}
-                onClick={ () => onChangeDisciplina }
-              >Artes</button>
-              <button
-                type="button"
-                className="geografia"
-                value={Disciplina.Geografia}
-                onClick={ () => onChangeDisciplina }
-              >Geografia</button>
-              <button
-                type="button"
-                className="sociologia"
-                value={Disciplina.Sociologia}
-                onClick={ () => onChangeDisciplina }
-              >Sociologia</button>
+            <div>
+              <h2>Disciplina</h2>
+              <div className="disciplinas">
+                <button
+                  type="button"
+                  className="biologia"
+                  onClick={ () => onClickDisciplina(Disciplina.Biologia) }
+                >Biologia</button>
+                <button
+                  type="button"
+                  className="artes"
+                  onClick={ () => onClickDisciplina(Disciplina.Artes) }
+                >Artes</button>
+                <button
+                  type="button"
+                  className="geografia"
+                  onClick={ () => onClickDisciplina(Disciplina.Geografia) }
+                >Geografia</button>
+                <button
+                  type="button"
+                  className="sociologia"
+                  onClick={ () => onClickDisciplina(Disciplina.Sociologia) }
+                >Sociologia</button>
+              </div>
             </div>
-            <h3>Nota</h3>
-            <input type="number" max={10} min={0} required={true} onChange={onChangeNota} value={ nota } />
+            <div>
+              <h3>Nota</h3>
+              <input type="number" max={10} min={0} required={true} onChange={onChangeNota} value={ nota } step=".1" />
+            </div>
             <div
               onClick={() => confirme()}
               className="confirme"

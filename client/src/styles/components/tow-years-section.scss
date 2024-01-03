@@ -1,17 +1,22 @@
 .painel {
-  margin-left: 15vw;
   margin-top: 6vh;
 }
 
 .section {
   width: 70vw;
-  margin-bottom: 3vh;
+  margin: 0 15vw;
+  
+  @media (max-width: 1080px) {
+    width: 85vw;
+    margin: 0 7.5vw;
+  }
 
   & .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3vh;
+    color: $principalFontColor;
     
     & h1 {
       font-size: 18px;
@@ -37,7 +42,11 @@
   }
 
   & .section-cards {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }

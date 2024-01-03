@@ -30,7 +30,11 @@ export function TwoYearsSection({ bimestre, position }: FormTypes) {
   const [notesToRender, setNotesToRender] = useState<Note[] | undefined>(undefined);
 
   const onClick = () => {
-    dispatch(change({ position, state: true }));
+    if (!notesToRender || notesToRender.length < 4) {
+      dispatch(change({ position, state: true }));
+    } else {
+      window.alert("Delete uma nota para que possa adicionar outra!");
+    }
   }
 
   useEffect(() => {
